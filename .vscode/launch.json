@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Docker: Start stack",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "docker",
+      "runtimeArgs": [
+        "compose",
+        "up",
+        "-d",
+        "--build"
+      ],
+      "cwd": "${workspaceFolder}"
+    }
+  ],
+  "compounds": []
+}
