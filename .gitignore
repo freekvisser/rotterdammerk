@@ -23,7 +23,7 @@ docker-compose.override.yml
 docker.env
 
 # Frontend app dependencies
-admin/node_modules/
-admin/dist/
-webshop/node_modules/
-webshop/dist/
+frontend/admin/node_modules/
+frontend/admin/dist/
+frontend/webshop/node_modules/
+frontend/webshop/dist/
