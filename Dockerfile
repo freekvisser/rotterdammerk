@@ -18,7 +18,7 @@ WORKDIR /var/www/html
 
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-COPY . .
+COPY api/ ./
 RUN composer install --prefer-dist --no-interaction --no-progress --optimize-autoloader
 
 RUN sed -ri 's!DocumentRoot /var/www/html!DocumentRoot /var/www/html/public!g' /etc/apache2/sites-available/*.conf \
