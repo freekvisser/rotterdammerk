@@ -11,7 +11,7 @@ use Ramsey\Uuid\Uuid;
 use App\Service\ProductService;
 
 
-#[Route('/products')]
+#[Route('shop/products')]
 class ProductController extends AbstractController
 {
     private ProductService $productService;

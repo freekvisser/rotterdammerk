@@ -34,7 +34,8 @@ services:
       - app-network
 
   webshop:
-    image: node:20-alpine
+    build:
+      context: ./docker/node
     container_name: rotterdammerk_webshop
     working_dir: /app
     command: sh -c "npm install && npm run dev -- --host 0.0.0.0"

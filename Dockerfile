@@ -11,7 +11,7 @@ RUN apt-get update \
         libonig-dev \
         default-mysql-client \
     && docker-php-ext-install pdo pdo_mysql \
-    && a2enmod rewrite \
+    && a2enmod rewrite headers \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /var/www/html

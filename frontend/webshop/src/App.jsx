@@ -1,14 +1,15 @@
-const App = () => {
-  return (
-    <main className="shop-shell">
-      <h1>RotterdamMerk Webshop</h1>
-      <p>Storefront scaffolded for the new React webshop app.</p>
-      <div className="product-card">
-        <h2>Featured Product</h2>
-        <p>Connect this app to the Symfony API once the backend endpoints are ready.</p>
-      </div>
-    </main>
-  );
-};
+import React, { useEffect, useState } from 'react';
+import { DefaultApi, Configuration } from './api-client';
 
-export default App;
+export default function App() {
+  const [product, setProduct] = useState(null);
+
+  useEffect(() => {
+    const api = new DefaultApi(new Configuration({ basePath: 'http://localhost:8000' }));
+    api.getProductsFind('019fe5d2-e848-707f-b187-6d37f0ae2dde')
+      .then(r => setProduct(r.data))
+      .catch(console.error);
+  }, []);
+
+  return <div>{product ? product.name : 'Loading...'}</div>;
+}

@@ -17,6 +17,7 @@
 ###> symfony/asset-mapper ###
 /public/assets/
 /assets/vendor/
+/api/public/bundles/
 ###< symfony/asset-mapper ###
 
 docker-compose.override.yml
@@ -27,3 +28,4 @@ frontend/admin/node_modules/
 frontend/admin/dist/
 frontend/webshop/node_modules/
 frontend/webshop/dist/
+
