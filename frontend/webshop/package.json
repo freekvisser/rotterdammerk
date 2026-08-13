@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 3002",
     "build": "vite build",
-    "preview": "vite preview --host 0.0.0.0 --port 4174"
+    "preview": "vite preview --host 0.0.0.0 --port 4174",
+    "generate-api": "openapi-generator-cli generate -i http://api/api/doc/shop/openapi.json -g typescript-axios -o src/api-client"
   },
   "dependencies": {
     "react": "^18.3.1",

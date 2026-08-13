@@ -39,4 +39,15 @@ class ProductController extends AbstractController
             'description' => $product->getDescription(),
         ]);
     }
+    #[Route('/listall', name: 'products_all', methods: ['GET'])]
+    public function listAll(EntityManagerInterface $entityManager): JsonResponse
+    {
+        //$product = $this->productService->findProductById($id);
+
+        return $this->json([
+            'id' => 5,
+            'name' => 'Sample Product',
+            'description' => 'This is a sample product.',
+        ]);
+    }
 }

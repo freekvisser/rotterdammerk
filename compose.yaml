@@ -2,7 +2,7 @@ services:
   api:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/api/Dockerfile
     container_name: rotterdammerk_api
     ports:
       - "8000:80"
@@ -22,10 +22,15 @@ services:
       - app-network
 
   admin:
-    image: node:20-alpine
+    build:
+      context: ./docker/node
     container_name: rotterdammerk_admin
     working_dir: /app
-    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    command: sh -c "
+      npm install && 
+      npm run generate-api &&
+      npm run dev -- --host 0.0.0.0 &&
+      "
     ports:
       - "3001:3001"
     volumes:
@@ -38,7 +43,11 @@ services:
       context: ./docker/node
     container_name: rotterdammerk_webshop
     working_dir: /app
-    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    command: sh -c "
+      npm install && 
+      npm run generate-api &&
+      npm run dev -- --host 0.0.0.0
+      "
     ports:
       - "3002:3002"
     volumes:
