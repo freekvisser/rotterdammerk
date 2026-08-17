@@ -28,4 +28,20 @@ class ProductController extends AbstractController
 
         return $this->json(['id' => $productId]);
     }
+
+    #[Route('/findall', name: 'product_findall', methods: ['GET'])]
+    public function findAllProducts(): JsonResponse
+    {
+        $products = $this->productService->getAllProducts();
+
+        $productData = array_map(function ($product) {
+            return [
+                'id' => $product->getId(),
+                'name' => $product->getName(),
+                'description' => $product->getDescription(),
+            ];
+        }, $products);
+
+        return $this->json($productData);
+    }
 }

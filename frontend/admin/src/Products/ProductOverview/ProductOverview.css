@@ -1,0 +1,6 @@
+.product-container {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 32px;
+    justify-content: center;
+}

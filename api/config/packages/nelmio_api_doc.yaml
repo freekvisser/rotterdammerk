@@ -1,8 +1,8 @@
 nelmio_api_doc:
     documentation:
         info:
-            title: My App
-            description: This is not working!
+            title: Rotterdammerk
+            description: OpenAPI file for Rotterdammerk
             version: 1.0.0
     areas: # to filter documented areas
         default: 
@@ -10,7 +10,7 @@ nelmio_api_doc:
                 - ^/api(?!/doc$) # Accepts routes under /api except /api/doc
         admin:
             path_patterns:
-                - ^/admin # Accepts routes under /api except /api/doc
+                - ^/admin # Accepts routes under /admin
         shop:
             path_patterns:
-                - ^/shop # Accepts routes under /api except /api/doc
+                - ^/shop # Accepts routes under /shop

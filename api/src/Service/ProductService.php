@@ -24,6 +24,10 @@ class ProductService
     {
         return $this->productRepository->find($id);
     }
+    public function getAllProducts()
+    {
+        return $this->productRepository->findAll();
+    }
 
     public function createProduct(){
         $productId = Uuid::uuid7()->toString();

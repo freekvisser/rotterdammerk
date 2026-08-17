@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { DefaultApi, Configuration } from './api-client';
+import { ApiConfig as api } from './ApiConfig';
+import ProductPane from './Product/ProductPane';
 
 export default function App() {
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState([]);
 
   useEffect(() => {
-    const api = new DefaultApi(new Configuration({ basePath: 'http://localhost:8000' }));
-    api.getProductsFind('019fe5d2-e848-707f-b187-6d37f0ae2dde')
+    api.getProductsAll()
       .then(r => setProduct(r.data))
       .catch(console.error);
   }, []);
 
-  return <div>{product ? product.name : 'Loading...'}</div>;
+  return (
+    <div>
+      {product.map(p => (
+        <ProductPane key={p.id} product={p} />
+      ))}
+    </div>
+  );
 }

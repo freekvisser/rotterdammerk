@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Api;
+namespace App\Controller\Shop;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -42,12 +42,16 @@ class ProductController extends AbstractController
     #[Route('/listall', name: 'products_all', methods: ['GET'])]
     public function listAll(EntityManagerInterface $entityManager): JsonResponse
     {
-        //$product = $this->productService->findProductById($id);
+        $products = $this->productService->getAllProducts();
 
-        return $this->json([
-            'id' => 5,
-            'name' => 'Sample Product',
-            'description' => 'This is a sample product.',
-        ]);
+        $productData = array_map(function ($product) {
+            return [
+                'id' => $product->getId(),
+                'name' => $product->getName(),
+                'description' => $product->getDescription(),
+            ];
+        }, $products);
+
+        return $this->json($productData);
     }
 }
