@@ -20,16 +20,16 @@ class ProductService
     ) {
     }
 
-    public function findProductById($id)
+    public function findProductById($id): Product
     {
         return $this->productRepository->find($id);
     }
-    public function getAllProducts()
+    public function getAllProducts(): array
     {
         return $this->productRepository->findAll();
     }
 
-    public function createProduct(){
+    public function createProduct(): int{
         $productId = Uuid::uuid7()->toString();
 
         $product = new Product();

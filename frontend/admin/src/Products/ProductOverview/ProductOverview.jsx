@@ -3,6 +3,7 @@ import { ApiConfig as api } from '../../ApiConfig';
 import './ProductOverview.css';
 import ProductPane from '../ProductPane/ProductPane';
 import EditProductDialog from './EditProduct/EditProductDialog';
+//import { Product } from '../../api-client/api'
 
 const ProductOverview = () => {
     const [products, setProducts] = useState([])

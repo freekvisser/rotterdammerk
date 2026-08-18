@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Nelmio\ApiDocBundle\Attribute\Model;
 use OpenApi\Attributes as OA;
 
-
+use App\Entity\Product;
 use App\Service\ProductService;
 
 #[Route('/admin/product')]
@@ -28,20 +28,20 @@ class ProductController extends AbstractController
 
         return $this->json(['id' => $productId]);
     }
-
+    
     #[Route('/findall', name: 'product_findall', methods: ['GET'])]
+    #[OA\Response(
+        response: 200,
+        description: 'Returns all list of all stored products',
+        content: new OA\JsonContent(
+            type: 'array',
+            items: new OA\Items(ref: new Model(type: Product::class))
+        )
+    )]
     public function findAllProducts(): JsonResponse
     {
         $products = $this->productService->getAllProducts();
 
-        $productData = array_map(function ($product) {
-            return [
-                'id' => $product->getId(),
-                'name' => $product->getName(),
-                'description' => $product->getDescription(),
-            ];
-        }, $products);
-
-        return $this->json($productData);
+        return $this->json($products);
     }
 }
