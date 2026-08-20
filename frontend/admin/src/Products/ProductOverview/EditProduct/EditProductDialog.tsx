@@ -1,4 +1,5 @@
 import Dialog from '../../../Shared/Dialog.tsx';
+import './EditProductDialog.css';
 
 interface EditProductDialogProps {
     product: any;
@@ -8,18 +9,12 @@ interface EditProductDialogProps {
 }
 
 const EditProductDialog = ({ product, onSave, isOpen, onClose }: EditProductDialogProps) => {
-    
-    function editProduct() {
-        product.name = 'Updated name from edit';
-        onSave(product);
-    }
-
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const form = e.target as HTMLFormElement;
         const formData = new FormData(form);
-        
+
         const name = formData.get("name");
         const description = formData.get("description");
 
@@ -27,21 +22,31 @@ const EditProductDialog = ({ product, onSave, isOpen, onClose }: EditProductDial
         product.description = description;
 
         onSave(product);
+
+        onClose();
+
     }
 
-
-
     return (
-        <Dialog title="Title of Dialog" isOpen={isOpen} onClose={onClose}>
-            <p>This is standard HTML with dynamic React content.</p>
-            <form onSubmit={onSubmit} key={ product ? product.id : ''}>
-                <label>Product name</label>
-                <input defaultValue={product ? product.name : ''} name="name" />
-                <label>Product description</label>
-                <input defaultValue={product ? product.description : ''} name="description" />
-                <button type="submit">Click Me</button>
-            </form>
-            
+        <Dialog title="Edit product" isOpen={isOpen} onClose={onClose}>
+            <div className="edit-product-dialog__content">
+                <div className="edit-product-dialog__image-block">
+                    <div className="edit-product-dialog__image-placeholder">
+                        <span className="edit-product-dialog__image-icon">⌂</span>
+                    </div>
+                    <button type="button" className="edit-product-dialog__import-button">
+                        Import image
+                    </button>
+                </div>
+
+                <form onSubmit={onSubmit} key={product ? product.id : ''} className="edit-product-dialog__form">
+                    <label>Product name</label>
+                    <input defaultValue={product ? product.name : ''} name="name" />
+                    <label>Product description</label>
+                    <input defaultValue={product ? product.description : ''} name="description" />
+                    <button type="submit" className="edit-product-dialog__submit-button">Save changes</button>
+                </form>
+            </div>
         </Dialog>
     )
 }

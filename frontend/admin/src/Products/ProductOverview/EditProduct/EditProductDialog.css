@@ -1,0 +1,98 @@
+.edit-product-dialog__content {
+  display: grid;
+  gap: 20px;
+}
+
+.edit-product-dialog__image-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.edit-product-dialog__image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 150px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+  border: 1px dashed rgba(100, 116, 139, 0.5);
+  color: #475569;
+}
+
+.edit-product-dialog__image-icon {
+  font-size: 3rem;
+  line-height: 1;
+  opacity: 0.7;
+}
+
+.edit-product-dialog__import-button {
+  border: none;
+  border-radius: 999px;
+  background: #111827;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.edit-product-dialog__import-button:hover {
+  transform: translateY(-1px);
+  opacity: 0.96;
+}
+
+.edit-product-dialog__form {
+  display: grid;
+  gap: 10px;
+}
+
+.edit-product-dialog__form label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #334155;
+  letter-spacing: 0.01em;
+}
+
+.edit-product-dialog__form input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  border: 1px solid #dbe2ea;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  background: #ffffff;
+  color: #0f172a;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.edit-product-dialog__form input:focus {
+  outline: none;
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12);
+}
+
+.edit-product-dialog__submit-button {
+  margin-top: 12px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #5ec5c8 0%, #008100 100%);
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 12px 24px rgba(79, 70, 229, 0.2);
+}
+
+.edit-product-dialog__submit-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 32px rgba(79, 70, 229, 0.26);
+}
