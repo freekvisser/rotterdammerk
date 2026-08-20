@@ -8,7 +8,7 @@ All URIs are relative to *http://localhost*
 |[**getProductsFind**](#getproductsfind) | **GET** /shop/products/find/{id} | |
 
 # **getProductsAll**
-> getProductsAll()
+> Array<Product> getProductsAll()
 
 
 ### Example
@@ -31,7 +31,7 @@ This endpoint does not have any parameters.
 
 ### Return type
 
-void (empty response body)
+**Array<Product>**
 
 ### Authorization
 
@@ -40,13 +40,13 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**0** |  |  -  |
+|**200** | Returns all list of all stored products |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
