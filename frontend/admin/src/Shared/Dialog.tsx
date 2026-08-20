@@ -1,8 +1,15 @@
 import { useEffect, useRef } from "react";
 import './Dialog.css';
 
-export default function Dialog({ title, isOpen, onClose, children }) {
-  const dialogRef = useRef(null);
+interface DialogProps {
+  title: string;
+  isOpen: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+}
+
+export default function Dialog({ title, isOpen, onClose, children }: DialogProps) {
+  const dialogRef = useRef<HTMLDialogElement | null>(null);
 
   useEffect(() => {
     const dialogElement = dialogRef.current;
@@ -20,7 +27,7 @@ export default function Dialog({ title, isOpen, onClose, children }) {
   }, [isOpen]);
 
   // Handle native backdrop click or Escape key
-  const handleBackdropClick = (event) => {
+  const handleBackdropClick = (event: React.MouseEvent<HTMLDialogElement>) => {
     if (event.target === dialogRef.current) {
       onClose();
     }

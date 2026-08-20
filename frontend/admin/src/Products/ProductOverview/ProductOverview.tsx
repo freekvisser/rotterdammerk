@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { ApiConfig as api } from '../../ApiConfig';
+import { useEffect, useState } from 'react';
+import { ApiConfig as api } from '../../ApiConfig.tsx';
 import './ProductOverview.css';
-import ProductPane from '../ProductPane/ProductPane';
+import ProductPane from '../ProductPane/ProductPane.tsx';
 import EditProductDialog from './EditProduct/EditProductDialog';
-//import { Product } from '../../api-client/api'
+import { Product } from '../../api-client/api'
 
 const ProductOverview = () => {
-    const [products, setProducts] = useState([])
-    const [selectedProduct, setSelectedProduct] = useState(null)
+    const [products, setProducts] = useState<Array<Product>>([])
+    const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
 
     useEffect(() => {
         api.getProductFindall()
@@ -15,8 +15,9 @@ const ProductOverview = () => {
         .catch(console.error);
     }, [])
 
-    function updateProduct(updatedProduct){
-        setProducts(products.map(p => p.id === updatedProduct.id ? updatedProduct : p));
+    const updateProduct = (updatedProduct: Product) => {
+        const updatedProductList : Array<Product> = products.map(p => p.id === updatedProduct.id ? updatedProduct : p)
+        setProducts(updatedProductList);
     }
 
 

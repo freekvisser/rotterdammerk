@@ -1,13 +1,18 @@
 import './ProductPane.css';
+import { Product } from '../../api-client/api';
 
-export default function ProductPane({ product }) {
+interface ProductPaneProps {
+  product: Product;
+}
+
+export default function ProductPane({ product }: ProductPaneProps) {
   return (
     <div className="product-card">
       <div className="product-image-container">
-        {product?.imageUrl ? (
+        {false ? (
           <img 
-            src={product.imageUrl} 
-            alt={product.name} 
+            src={'product.imageUrl'} 
+            alt={product.name || undefined} 
             className="product-image" 
           />
         ) : (
