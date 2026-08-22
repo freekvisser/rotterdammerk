@@ -1,5 +1,6 @@
-import Dialog from '../../../Shared/Dialog.tsx';
+import Dialog from '../../../Shared/Dialog/Dialog.tsx';
 import './EditProductDialog.css';
+import Button from '../../../Shared/Button/Button.tsx';
 
 interface EditProductDialogProps {
     product: any;
@@ -44,7 +45,8 @@ const EditProductDialog = ({ product, onSave, isOpen, onClose }: EditProductDial
                     <input defaultValue={product ? product.name : ''} name="name" />
                     <label>Product description</label>
                     <input defaultValue={product ? product.description : ''} name="description" />
-                    <button type="submit" className="edit-product-dialog__submit-button">Save changes</button>
+                    <Button type="primary" title="Save changes" submit={true}/>
+                    <Button type="cancel" title="Cancel" onClick={onClose}/>
                 </form>
             </div>
         </Dialog>
