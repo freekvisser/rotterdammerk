@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { ApiConfig as api } from '../../ApiConfig.tsx';
 import './ProductOverview.css';
-import ProductPane from '../ProductPane/ProductPane.tsx';
+import ProductPane from './ProductPane/ProductPane.tsx';
 import EditProductDialog from './EditProduct/EditProductDialog';
 import { Product } from '../../api-client/api'
+import Loader from '../../Shared/Loader/Loader.tsx';
 
 const ProductOverview = () => {
+    const [saving, setSaving] = useState(false);
     const [products, setProducts] = useState<Array<Product>>([])
     const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
 
@@ -16,8 +18,14 @@ const ProductOverview = () => {
     }, [])
 
     const updateProduct = (updatedProduct: Product) => {
+        setSaving(true);
         const updatedProductList : Array<Product> = products.map(p => p.id === updatedProduct.id ? updatedProduct : p)
         setProducts(updatedProductList);
+        
+        api.postProductEdit(updatedProduct)
+        .then(r => {
+            setSaving(false);
+        }).catch(console.error);
     }
 
 
@@ -40,6 +48,9 @@ const ProductOverview = () => {
                 isOpen={Boolean(selectedProduct)}
                 onClose={() => setSelectedProduct(null)}
             />
+            
+            <Loader isLoading={saving} />
+
         </div>
     )
 }

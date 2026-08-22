@@ -5,6 +5,7 @@ base.ts
 common.ts
 configuration.ts
 docs/DefaultApi.md
+docs/PostProductEdit200Response.md
 docs/Product.md
 git_push.sh
 index.ts

@@ -1,5 +1,5 @@
 import './ProductPane.css';
-import { Product } from '../../api-client/api';
+import { Product } from '../../../api-client/api';
 
 interface ProductPaneProps {
   product: Product;

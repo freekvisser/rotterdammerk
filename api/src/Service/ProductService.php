@@ -29,6 +29,22 @@ class ProductService
         return $this->productRepository->findAll();
     }
 
+    public function editProduct(Product $product){
+        
+        $existingProduct = $this->productRepository->find($product->getId());
+
+        if (!$existingProduct) {
+            return false; // Product not found
+        }
+
+        $existingProduct->setName($product->getName());
+        $existingProduct->setDescription($product->getDescription());
+
+        $this->entityManager->flush();
+
+        return true; // Product updated successfully
+    }
+
     public function createProduct(): int{
         $productId = Uuid::uuid7()->toString();
 

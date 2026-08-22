@@ -23,6 +23,9 @@ import type { RequestArgs } from './base';
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
+export interface PostProductEdit200Response {
+    'success'?: boolean;
+}
 export interface Product {
     'id': string;
     'name'?: string | null;
@@ -91,6 +94,40 @@ export const DefaultApiAxiosParamCreator = function (configuration?: Configurati
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * 
+         * @param {Product} product Product object to edit
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postProductEdit: async (product: Product, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'product' is not null or undefined
+            assertParamExists('postProductEdit', 'product', product)
+            const localVarPath = `/admin/product/edit`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+            localVarHeaderParameter['Accept'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(product, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -122,6 +159,18 @@ export const DefaultApiFp = function(configuration?: Configuration) {
             const localVarOperationServerBasePath = operationServerMap['DefaultApi.getProductFindall']?.[localVarOperationServerIndex]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
         },
+        /**
+         * 
+         * @param {Product} product Product object to edit
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async postProductEdit(product: Product, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PostProductEdit200Response>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.postProductEdit(product, options);
+            const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+            const localVarOperationServerBasePath = operationServerMap['DefaultApi.postProductEdit']?.[localVarOperationServerIndex]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, localVarOperationServerBasePath || basePath);
+        },
     }
 };
 
@@ -147,6 +196,15 @@ export const DefaultApiFactory = function (configuration?: Configuration, basePa
         getProductFindall(options?: RawAxiosRequestConfig): AxiosPromise<Array<Product>> {
             return localVarFp.getProductFindall(options).then((request) => request(axios, basePath));
         },
+        /**
+         * 
+         * @param {Product} product Product object to edit
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        postProductEdit(product: Product, options?: RawAxiosRequestConfig): AxiosPromise<PostProductEdit200Response> {
+            return localVarFp.postProductEdit(product, options).then((request) => request(axios, basePath));
+        },
     };
 };
 
@@ -170,6 +228,16 @@ export class DefaultApi extends BaseAPI {
      */
     public getProductFindall(options?: RawAxiosRequestConfig) {
         return DefaultApiFp(this.configuration).getProductFindall(options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * 
+     * @param {Product} product Product object to edit
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    public postProductEdit(product: Product, options?: RawAxiosRequestConfig) {
+        return DefaultApiFp(this.configuration).postProductEdit(product, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
