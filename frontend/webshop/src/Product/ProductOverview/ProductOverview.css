@@ -1,0 +1,22 @@
+/* Flashy product overview theme */
+
+:root {
+  --accent: #0a8f3c;
+  --accent-2: #046936;
+  --bg: linear-gradient(135deg, #ffffff 0%, #f6fff6 100%);
+  --glass: rgba(255, 255, 255, 0.8);
+}
+
+.product-overview {
+  padding: 28px;
+  background: var(--bg);
+  min-height: 100vh;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 22px;
+}
+
+/* Modal and size-picker styles moved to ProductModal/ProductModal.css */

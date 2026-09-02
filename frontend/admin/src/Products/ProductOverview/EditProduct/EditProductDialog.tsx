@@ -25,7 +25,6 @@ const EditProductDialog = ({ product, onSave, isOpen, onClose }: EditProductDial
         onSave(product);
 
         onClose();
-
     }
 
     return (
