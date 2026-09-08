@@ -4,7 +4,10 @@ api.ts
 base.ts
 common.ts
 configuration.ts
+docs/AddToCartArgs.md
 docs/DefaultApi.md
+docs/PostAddToCart200Response.md
+docs/PostAddToCart200ResponseCartItemsInner.md
 docs/Product.md
 git_push.sh
 index.ts

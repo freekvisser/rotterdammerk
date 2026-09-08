@@ -16,6 +16,22 @@ class CartRepository extends ServiceEntityRepository
         parent::__construct($registry, Cart::class);
     }
 
+    public function getBySessionId(string $sessionId): ?Cart
+    {
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.session_id = :sessionId')
+            ->setParameter('sessionId', $sessionId)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    public function save(Cart $entity): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        $this->getEntityManager()->flush();
+    }
+
 //    /**
 //     * @return Cart[] Returns an array of Cart objects
 //     */

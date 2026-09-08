@@ -6,6 +6,7 @@ All URIs are relative to *http://localhost*
 |------------- | ------------- | -------------|
 |[**getProductsAll**](#getproductsall) | **GET** /shop/products/listall | |
 |[**getProductsFind**](#getproductsfind) | **GET** /shop/products/find/{id} | |
+|[**postAddToCart**](#postaddtocart) | **POST** /shop/cart/add | |
 
 # **getProductsAll**
 > Array<Product> getProductsAll()
@@ -97,6 +98,57 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**0** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **postAddToCart**
+> PostAddToCart200Response postAddToCart(addToCartArgs)
+
+
+### Example
+
+```typescript
+import {
+    DefaultApi,
+    Configuration,
+    AddToCartArgs
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new DefaultApi(configuration);
+
+let addToCartArgs: AddToCartArgs; //Cart item to add
+
+const { status, data } = await apiInstance.postAddToCart(
+    addToCartArgs
+);
+```
+
+### Parameters
+
+|Name | Type | Description  | Notes|
+|------------- | ------------- | ------------- | -------------|
+| **addToCartArgs** | **AddToCartArgs**| Cart item to add | |
+
+
+### Return type
+
+**PostAddToCart200Response**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**200** | Adds a product to the cart and returns the updated cart items |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

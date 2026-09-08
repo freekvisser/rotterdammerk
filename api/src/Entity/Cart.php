@@ -9,7 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
 class Cart
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
     #[ORM\Column(length: 36)]
     private ?string $id = null;
 

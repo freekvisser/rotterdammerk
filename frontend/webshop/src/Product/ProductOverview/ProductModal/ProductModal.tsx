@@ -1,10 +1,26 @@
 import { useState } from 'react';
 import './ProductModal.css';
-import { Product } from '../../../api-client/api';
+import { Product, AddToCartArgs } from '../../../api-client/api';
+import { ApiConfig as api } from '../../../ApiConfig';
+
 
 const ProductModal = ({ selectedProduct, closeModal }: { selectedProduct: Product; closeModal: () => void }) => {
 
     const [selectedSize, setSelectedSize] = useState<string>('M');
+
+    
+
+    function addToCart(product: Product) {
+        const args: AddToCartArgs = {
+            productId: product.id,
+            quantity: '1',
+            size: selectedSize
+        };
+
+        api.postAddToCart(args)
+            .then((r: any) => console.log('Cookie:', r))
+            .catch(console.error);
+    }
     
     return (  
         selectedProduct && 
@@ -27,7 +43,7 @@ const ProductModal = ({ selectedProduct, closeModal }: { selectedProduct: Produc
                                     <button key={s} type="button" className={`size-button ${selectedSize === s ? 'selected' : ''}`} onClick={() => setSelectedSize(s)}>{s}</button>
                                 ))}
                             </div>
-                            <button className="order-button" onClick={() => console.log('Order', selectedProduct, selectedSize)}>Order</button>
+                            <button className="order-button" onClick={() => addToCart(selectedProduct)}>Order</button>
                         </div>
                     </div>
                 </div>
